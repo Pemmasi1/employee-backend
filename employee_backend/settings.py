@@ -36,7 +36,12 @@ INSTALLED_APPS = [
     'department',
     'rest_framework',
     'drf_yasg',
+    'drf_spectacular',
 ]
+
+REST_FRAMEWORK = {
+      'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
+  }
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -72,8 +77,17 @@ WSGI_APPLICATION = 'employee_backend.wsgi.application'
 # https://docs.djangoproject.com/en/4.x/ref/settings/#databases
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'mssql',
+        'NAME': 'emplyoee',
+        'USER': 'pemmasi1',
+        'PASSWORD': 'Siva@12345',
+        'HOST': 'employee-db.database.windows.net',
+        'PORT': '1433',
+        'OPTIONS': {
+            'driver': 'ODBC Driver 18 for SQL Server',
+            'extra_params': 'TrustServerCertificate=no;Encrypt=yes;',
+            'timeout': 30,
+        },
     }
 }
 
