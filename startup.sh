@@ -9,8 +9,17 @@ set -x
 # Install dependencies
 pip install -r requirements.txt
 
-# Apply database migrations
-python manage.py migrate
+# Retry database migrations up to 5 times
+RETRIES=5
+until python manage.py migrate; do
+  RETRIES=$((RETRIES-1))
+  if [ $RETRIES -le 0 ]; then
+    echo "Failed to apply database migrations after multiple attempts."
+    exit 1
+  fi
+  echo "Retrying database migrations in 5 seconds..."
+  sleep 5
+done
 
 # Collect static files
 python manage.py collectstatic --noinput
