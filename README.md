@@ -1,7 +1,7 @@
 # Employee Backend Project
 
 ## Overview
-This is the Employee Backend project, a Django application designed to manage employee-related data and functionalities.
+This is the Employee Backend project, a Django application designed to manage employee-related data and functionalities. Appis deployed to Azure app service and database is hosted on azure sql server and deployment is initiated when changes are merged to main branch.
 
 ## Project Structure
 ```
